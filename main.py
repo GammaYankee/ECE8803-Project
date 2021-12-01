@@ -6,7 +6,7 @@ from tqdm import tqdm
 import pickle
 
 
-n_rounds = 10
+n_rounds = 40
 n_steps = 20
 
 
@@ -19,11 +19,9 @@ for i in tqdm(range(n_rounds)):
     woRejection.append(numpy.array(list(simulate(ThompsonSampling(2), mu1, mu2, 2 ** n_steps))))
     wRejection.append(
         numpy.array(list(simulate(ThompsonSamplingwRejection([0.5, 0.5], [0.1, 0.1]), mu1, mu2, 2 ** n_steps))))
-plot1 = sum(woRejection) / n_rounds
-plot2 = sum(wRejection) / n_rounds
 
 file = open('data/thompson_plot_data.pkl', 'wb')
-pickle.dump([plot1, plot2], file)
+pickle.dump([woRejection, wRejection], file)
 
 
 
