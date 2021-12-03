@@ -28,4 +28,4 @@ for mean, std, name, color in zip(means, stds, names, colors):
 
 ax.legend()
 
-fig.savefig('regrets_delta{}_width{}.png'.format(delta, width))
+fig.savefig('figures/regrets_delta{}_width{}.png'.format(delta, width))
