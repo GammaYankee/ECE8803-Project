@@ -7,7 +7,7 @@ mu_1_mean = 0.6
 delta = 0.1
 width = 0.1
 
-file = open('data/experiments_{}/thompson_data_delta{}_width{}.pkl'.format(mu_1_mean, delta, width), 'rb')
+file = open('plotting_data/experiments_{}/thompson_data_delta{}_width{}.pkl'.format(mu_1_mean, delta, width), 'rb')
 runs = [numpy.array(x) for x in pickle.load(file)]
 
 steps = [2 ** i for i in range(len(runs[0][0]))]

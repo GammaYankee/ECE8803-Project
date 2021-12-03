@@ -5,7 +5,7 @@ from matplotlib import cm
 
 mu_1_mean = 0.6
 
-file = open('data/experiments_{}/test_cases.pkl'.format(mu_1_mean), 'rb')
+file = open('plotting_data/experiments_{}/test_cases.pkl'.format(mu_1_mean), 'rb')
 test_cases = pickle.load(file)
 
 width, delta, thompson_diff_regret, ucb_diff_regret = [], [], [], []
@@ -15,7 +15,7 @@ for test_case in test_cases:
     width.append(width_i)
     delta.append(delta_i)
 
-    file = open('data/experiments_{}/thompson_data_delta{}_width{}.pkl'.format(mu_1_mean, delta_i, width_i), 'rb')
+    file = open('plotting_data/experiments_{}/thompson_data_delta{}_width{}.pkl'.format(mu_1_mean, delta_i, width_i), 'rb')
     woRejection, wRejection, ucb, ucbwConfidence = pickle.load(file)
     woRejection, wRejection = numpy.array(woRejection), numpy.array(wRejection)
     ucb, ucbwConfidence =numpy.array(ucb), numpy.array(ucbwConfidence)
