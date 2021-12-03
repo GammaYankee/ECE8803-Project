@@ -18,7 +18,7 @@ for test_case in test_cases:
     file = open('data/experiments_{}/thompson_data_delta{}_width{}.pkl'.format(mu_1_mean, delta_i, width_i), 'rb')
     woRejection, wRejection, ucb, ucbwConfidence = pickle.load(file)
     woRejection, wRejection = numpy.array(woRejection), numpy.array(wRejection)
-    ucb, ucbwConfidence =numpy.array(ucb), numpy.array(woRejection)
+    ucb, ucbwConfidence =numpy.array(ucb), numpy.array(ucbwConfidence)
 
     thompson_diff_i = woRejection.mean(axis=0)[-1] - wRejection.mean(axis=0)[-1]
     ucb_diff_i = ucb.mean(axis=0)[-1] - ucbwConfidence.mean(axis=0)[-1]
@@ -28,17 +28,25 @@ for test_case in test_cases:
 
 
 fig_1 = plt.figure()
+fig_1.set_size_inches(5,5)
 ax = fig_1.add_subplot(111, projection='3d')
 surf = ax.plot_trisurf(width, delta, thompson_diff_regret, cmap=cm.jet, linewidth=0)
-ax.set_axis_off()
-plt.xlabel('eps')
-plt.ylabel('delta')
-plt.show()
+# ax.pcolor(width, delta, thompson_diff_regret, cmap=cm.jet, linewidth=0)
+# plt.title('Regret Difference for TS')
+plt.xlabel('Estimation error $\epsilon$', fontsize=13,labelpad=10)
+plt.ylabel('Gap between arms $\Delta$', fontsize=13, labelpad=10)
+ax.grid(False)
+ax.set_zticks([])
+ax.view_init(89.9, -90.1)
+fig_1.savefig('TS-comparison.png')
 
 
 fig_2 = plt.figure()
 ax = fig_2.add_subplot(111, projection='3d')
 surf = ax.plot_trisurf(width, delta, ucb_diff_regret, cmap=cm.jet, linewidth=0)
-plt.xlabel('eps')
-plt.ylabel('delta')
-plt.show()
+plt.xlabel('Estimation error $\epsilon$', fontsize=13,labelpad=10)
+plt.ylabel('Gap between arms $\Delta$', fontsize=13, labelpad=10)
+ax.grid(False)
+ax.set_zticks([])
+ax.view_init(89.9, -90.1)
+fig_2.savefig('UCB-comparison.png')
